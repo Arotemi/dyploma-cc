@@ -2378,6 +2378,19 @@ ul.icons li>* .label {
 
 /* Posts */
 
+form div.form-group:not(.codeBlock) {
+    padding: 0 0 1.5em 0;
+}
+
+div.form-group small {
+    font-size: 0.6em;
+    margin: 0 0 0 0.7em;
+}
+
+.codeBlock {
+    padding: 2em 0 1.5em 0;
+}
+
 ul.posts {
     list-style: none;
     padding: 0;
@@ -2833,6 +2846,16 @@ article.special {
     font-family: "Raleway", Helvetica, sans-serif;
     font-size: 0.7em;
     font-weight: 400;
+    letter-spacing: 0.25em;
+    line-height: 2.5;
+    margin-top: -1em;
+    text-transform: uppercase;
+}
+
+.fontSetap2 {
+    font-family: "Raleway", Helvetica, sans-serif;
+    font-size: 0.6em;
+    font-weight: 600;
     letter-spacing: 0.25em;
     line-height: 2.5;
     margin-top: -1em;

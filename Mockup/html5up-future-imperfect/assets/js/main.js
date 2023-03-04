@@ -121,6 +121,16 @@
 
         });
 
+    $(document).ready(function() {
+        $('#accordion .collapse').on('shown.bs.collapse', function() {
+            $(this).parent().find('.btn-link').addClass('active');
+        });
+
+        $('#accordion .collapse').on('hidden.bs.collapse', function() {
+            $(this).parent().find('.btn-link').removeClass('active');
+        });
+    });
+
     $search_input
         .on('keydown', function(event) {
 

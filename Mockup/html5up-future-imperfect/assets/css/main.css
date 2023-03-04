@@ -3514,6 +3514,76 @@ button#logbtn:hover {
     padding-top: 0;
 }
 
+.card {
+    border: none;
+    margin-bottom: 10px;
+}
+
+
+/* Style for accordion header button */
+
+#accordion .btn-link {
+    text-decoration: none;
+    color: #333;
+    font-weight: 600;
+    height: 2.5em;
+    line-height: normal;
+    box-shadow: none;
+}
+
+#accordion .btn-link:hover {
+    background-color: rgba(7, 97, 42, 0.548);
+    color: #d4d9d7 !important;
+}
+
+#accordion .card .btn-link:hover {
+    background-color: rgba(7, 97, 42, 0.548);
+}
+
+
+/* Style for accordion body */
+
+.collapse {
+    font-size: 14px;
+}
+
+#accordion .card-header {
+    padding: 0.75rem 1.25rem;
+    margin-bottom: 0;
+    background-color: rgba(3, 154, 63, 0.233);
+    border-bottom: 1px solid rgba(0, 0, 0, .125);
+}
+
+#accordion div.collapse {
+    background-color: #8ccd9d36;
+}
+
+#accordion .card-case-description {
+    padding: 10px 20px;
+    font-weight: bold;
+}
+
+#accordion .card-case-description span {
+    font-size: large;
+    color: #0a894a;
+}
+
+#accordion div.code-insertion {
+    text-align: left;
+}
+
+#accordion div.code-insertion h6 {
+    padding-left: 1.5em;
+    margin-bottom: 1em;
+}
+
+
+/* Style for active accordion button */
+
+#accordion .btn-link.active {
+    color: #fff;
+}
+
 @media screen and (max-width: 736px) {
     #menu>* {
         padding: 1.5em;

@@ -11,6 +11,10 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
     <link rel="stylesheet" href="assets/css/main.css" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="assets/css/prism.css">
+
+
 </head>
 
 <body class="is-preload">
@@ -128,7 +132,7 @@
         <!-- Main -->
         <div id="main">
 
-            <!-- Worspace -->
+            <!-- Worspace Saved Test Cases, using accordions we can extend content-->
             <article class="post">
                 <header>
                     <div class="title">
@@ -146,40 +150,110 @@
                 <div class="col-12">
 
                     <div class="title">
-                        <h3 class="fontSetap1">Your Automation test Configurations</h3>
+                        <h3 class="fontSetap1">Your Saved Test Cases</h3>
                     </div>
 
                 </div>
+                <!--Accordion Content-->
+                <div id="accordion">
 
-                <div class="col-12">
-                    <form>
-
-                        <p>Insert Cypress test code for your first <b>GIVEN</b> step:</p>
-
-                        <div class="form-group">
-                            <label for="exampleInputEmail1" class="fontSetap2">Test Suit Title*</label>
-                            <input type="text" class="form-control" placeholder="Input Suit title" aria-label="Block Title" aria-describedby="basic-addon1">
+                    <div class="card">
+                        <div class="card-header" id="headingOne">
+                            <h5 class="mb-0">
+                                <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                Test case #1 |  Scenario: Successful login
+                          </button>
+                            </h5>
                         </div>
 
-                        <div class="form-group">
-                            <label for="exampleInputEmail1" class="fontSetap2">Block Title*</label>
-                            <input type="text" class="form-control" placeholder="Input Block Title" aria-label="Block Title" aria-describedby="basic-addon1">
+                        <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+                            <div class="card-body">
+                                <h6>Scenario: Successful login</h6>
+
+                                <div class="card-case-description">
+                                    <P>
+                                        <SPAN>GIVEN</SPAN> I visit the login page
+                                    </P>
+
+                                    <p>
+                                        <SPAN>WHEN</SPAN> I enter valid credentials
+                                    </p>
+
+                                    <p>
+                                        <SPAn>WHEN</SPAn> I submit the login form
+                                    </p>
+
+                                    <p>
+                                        <span>THEN</span> I should be logged in
+                                    </p>
+                                    <hr>
+                                </div>
+
+                                <div class="code-insertion">
+                                    <h6>Cypress Code:</h6>
+                                    <pre>
+
+                                        <code class="language-javascript">
+import { Given, When, Then } from "cypress-cucumber-preprocessor/steps";
+
+Given("I visit the login page", () => {
+cy.visit("/login");
+});
+
+When("I enter valid credentials", () => {
+cy.get('input[name="username"]').type("myusername");
+cy.get('input[name="password"]').type("mypassword");
+});
+
+When("I submit the login form", () => {
+cy.get('button[type="submit"]').click();
+});
+
+Then("I should be logged in", () => {
+cy.url().should("include", "/dashboard");
+});
+    
+                                        </code>
+                                    </pre>
+                                </div>
+                            </div>
                         </div>
+                    </div>
 
-                        <div class="form-group">
-                            <label for="exampleInputEmail1" class="fontSetap2">Used fixtures(variables)</label>
-                            <textarea class="form-control" placeholder="Input your fixtures, using JSON format" id="exampleFormControlTextarea1" rows="3"></textarea>
-                            <small id="emailHelp" class="form-text text-muted">(not mandatory*)</small>
+                    <div class="card">
+                        <div class="card-header" id="headingTwo">
+                            <h5 class="mb-0">
+                                <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                            Collapsible Group Item #2
+                          </button>
+                            </h5>
                         </div>
-
-                        <div class="form-group codeBlock">
-                            <label for="exampleInputEmail1" class="fontSetap2">Block Code*</label>
-                            <textarea type="text" name="demo-message" id="demo-message" placeholder="Enter your Code" rows="6"></textarea>
-
+                        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+                            <div class="card-body">
+                                Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird
+                                on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft
+                                beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                            </div>
                         </div>
+                    </div>
 
+                    <div class="card">
+                        <div class="card-header" id="headingThree">
+                            <h5 class="mb-0">
+                                <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                            Collapsible Group Item #3
+                          </button>
+                            </h5>
+                        </div>
+                        <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+                            <div class="card-body">
+                                Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird
+                                on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft
+                                beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                            </div>
+                        </div>
+                    </div>
 
-                    </form>
 
                 </div>
 
@@ -205,40 +279,11 @@
                 </footer>
             </article>
 
-            <!-- Post -->
-            <article class="post">
-                <header>
-                    <div class="title">
-                        <h2><a href="single.html">Ultricies sed magna euismod enim vitae gravida</a></h2>
-                        <p>Lorem ipsum dolor amet nullam consequat etiam feugiat</p>
-                    </div>
-                    <div class="meta">
-                        <time class="published" datetime="2015-10-25">October 25, 2015</time>
-                        <a href="#" class="author"><span class="name">Jane Doe</span><img src="images/avatar.jpg" alt="" /></a>
-                    </div>
-                </header>
-                <a href="single.html" class="image featured"><img src="images/pic02.jpg" alt="" /></a>
-                <p>Mauris neque quam, fermentum ut nisl vitae, convallis maximus nisl. Sed mattis nunc id lorem euismod placerat. Vivamus porttitor magna enim, ac accumsan tortor cursus at. Phasellus sed ultricies mi non congue ullam corper.</p>
-                <footer>
-                    <ul class="actions">
-                        <li><a href="single.html" class="button large">Continue Reading</a></li>
-                    </ul>
-                    <ul class="stats">
-                        <li><a href="#">General</a></li>
-                        <li><a href="#" class="icon solid fa-heart">28</a></li>
-                        <li><a href="#" class="icon solid fa-comment">128</a></li>
-                    </ul>
-                </footer>
-            </article>
 
 
 
 
-            <!-- Pagination -->
-            <ul class="actions pagination">
-                <li><a href="" class="disabled button large previous">Previous Page</a></li>
-                <li><a href="#" class="button large next">Next Page</a></li>
-            </ul>
+
 
         </div>
 
@@ -256,55 +301,6 @@
 
 
 
-            <!-- Mini Posts 
-			
-            <section>
-                <div class="mini-posts">
-
-                    // Mini Post
-                    <article class="mini-post">
-                        <header>
-                            <h3><a href="single.html">Vitae sed condimentum</a></h3>
-                            <time class="published" datetime="2015-10-20">October 20, 2015</time>
-                            <a href="#" class="author"><img src="images/avatar.jpg" alt="" /></a>
-                        </header>
-                        <a href="single.html" class="image"><img src="images/pic04.jpg" alt="" /></a>
-                    </article>
-
-                    // Mini Post 
-                    <article class="mini-post">
-                        <header>
-                            <h3><a href="single.html">Rutrum neque accumsan</a></h3>
-                            <time class="published" datetime="2015-10-19">October 19, 2015</time>
-                            <a href="#" class="author"><img src="images/avatar.jpg" alt="" /></a>
-                        </header>
-                        <a href="single.html" class="image"><img src="images/pic05.jpg" alt="" /></a>
-                    </article>
-
-                    // Mini Post 
-                    <article class="mini-post">
-                        <header>
-                            <h3><a href="single.html">Odio congue mattis</a></h3>
-                            <time class="published" datetime="2015-10-18">October 18, 2015</time>
-                            <a href="#" class="author"><img src="images/avatar.jpg" alt="" /></a>
-                        </header>
-                        <a href="single.html" class="image"><img src="images/pic06.jpg" alt="" /></a>
-                    </article>
-
-                    // Mini Post
-                    <article class="mini-post">
-                        <header>
-                            <h3><a href="single.html">Enim nisl veroeros</a></h3>
-                            <time class="published" datetime="2015-10-17">October 17, 2015</time>
-                            <a href="#" class="author"><img src="images/avatar.jpg" alt="" /></a>
-                        </header>
-                        <a href="single.html" class="image"><img src="images/pic07.jpg" alt="" /></a>
-                    </article>
-
-                </div>
-            </section>
-
-		-->
 
             <!-- Posts List -->
             <section>
@@ -320,7 +316,7 @@
                     <li>
                         <article>
                             <header>
-                                <h3><a href="./SavedTestCases.html">Saved Test Cases</a></h3>
+                                <h3><a href="single.html">Saved Test Cases</a></h3>
 
                             </header>
                             <a href="single.html" class="image"><img src="images/pic09.jpg" alt="" /></a>
@@ -369,7 +365,10 @@
     <script src="assets/js/breakpoints.min.js"></script>
     <script src="assets/js/util.js"></script>
     <script src="assets/js/main.js"></script>
-    <script src="assets/js/pism.js"></script>
+    <script src="assets/js/prism.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
 </body>
 
 </html>

@@ -6,90 +6,144 @@
 
 (function($) {
 
-	var	$window = $(window),
-		$body = $('body'),
-		$menu = $('#menu'),
-		$sidebar = $('#sidebar'),
-		$main = $('#main');
+    var $window = $(window),
+        $body = $('body'),
+        $menu = $('#menu'),
+        $sidebar = $('#sidebar'),
+        $main = $('#main'),
+        $login = $('#login');
 
-	// Breakpoints.
-		breakpoints({
-			xlarge:   [ '1281px',  '1680px' ],
-			large:    [ '981px',   '1280px' ],
-			medium:   [ '737px',   '980px'  ],
-			small:    [ '481px',   '736px'  ],
-			xsmall:   [ null,      '480px'  ]
-		});
+    // Breakpoints.
+    breakpoints({
+        xlarge: ['1281px', '1680px'],
+        large: ['981px', '1280px'],
+        medium: ['737px', '980px'],
+        small: ['481px', '736px'],
+        xsmall: [null, '480px']
+    });
 
-	// Play initial animations on page load.
-		$window.on('load', function() {
-			window.setTimeout(function() {
-				$body.removeClass('is-preload');
-			}, 100);
-		});
+    // Play initial animations on page load.
+    $window.on('load', function() {
+        window.setTimeout(function() {
+            $body.removeClass('is-preload');
+        }, 100);
+    });
 
-	// Menu.
-		$menu
-			.appendTo($body)
-			.panel({
-				delay: 500,
-				hideOnClick: true,
-				hideOnSwipe: true,
-				resetScroll: true,
-				resetForms: true,
-				side: 'right',
-				target: $body,
-				visibleClass: 'is-menu-visible'
-			});
+    // Menu.
+    $menu
+        .appendTo($body)
+        .panel({
+            delay: 500,
+            hideOnClick: true,
+            hideOnSwipe: true,
+            resetScroll: true,
+            resetForms: true,
+            side: 'right',
+            target: $body,
+            visibleClass: 'is-menu-visible'
+        });
 
-	// Search (header).
-		var $search = $('#search'),
-			$search_input = $search.find('input');
 
-		$body
-			.on('click', '[href="#search"]', function(event) {
+    $login
+        .appendTo($body)
+        .panel({
+            delay: 500,
+            hideOnClick: true,
+            hideOnSwipe: true,
+            resetScroll: true,
+            resetForms: true,
+            side: 'right',
+            target: $body,
+            visibleClass: 'is-login-visible'
+        });
 
-				event.preventDefault();
+    // Toggle login panel when login button is clicked
+    $('a[href="#login"]').click(function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        var $loginwidth = $login.width();
 
-				// Not visible?
-					if (!$search.hasClass('visible')) {
+        $body.toggleClass('is-login-visible');
 
-						// Reset form.
-							$search[0].reset();
+        if ($body.hasClass('is-login-visible')) {
+            $login.animate({
+                right: '0px'
+            }, 1000);
+        } else {
+            $login.animate({
+                right: -$loginwidth
+            })
+        }
+    });
 
-						// Show.
-							$search.addClass('visible');
+    // Hide login panel when clicking outside it
+    $login.click(function(e) {
+        if ($body.hasClass('is-login-visible') && !$(e.target).closest('#login').length) {
+            $login.animate({
+                right: '-25em'
+            }, 2000);
+            $body.removeClass('is-login-visible');
+        }
+    });
 
-						// Focus input.
-							$search_input.focus();
+    $('#login .close').click(function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        $login.animate({
+            right: '-25em'
+        }, 2000);
+        $body.removeClass('is-login-visible');
+        $body.removeClass('is-menu-visible');
+    });
 
-					}
+    // Search (header).
+    var $search = $('#search'),
+        $search_input = $search.find('input');
 
-			});
+    $body
+        .on('click', '[href="#search"]', function(event) {
 
-		$search_input
-			.on('keydown', function(event) {
+            event.preventDefault();
 
-				if (event.keyCode == 27)
-					$search_input.blur();
+            // Not visible?
+            if (!$search.hasClass('visible')) {
 
-			})
-			.on('blur', function() {
-				window.setTimeout(function() {
-					$search.removeClass('visible');
-				}, 100);
-			});
+                // Reset form.
+                $search[0].reset();
 
-	// Intro.
-		var $intro = $('#intro');
+                // Show.
+                $search.addClass('visible');
 
-		// Move to main on <=large, back to sidebar on >large.
-			breakpoints.on('<=large', function() {
-				$intro.prependTo($main);
-			});
+                // Focus input.
+                $search_input.focus();
 
-			breakpoints.on('>large', function() {
-				$intro.prependTo($sidebar);
-			});
+            }
+
+        });
+
+    $search_input
+        .on('keydown', function(event) {
+
+            if (event.keyCode == 27)
+                $search_input.blur();
+
+        })
+        .on('blur', function() {
+            window.setTimeout(function() {
+                $search.removeClass('visible');
+            }, 100);
+        });
+
+    // Intro.
+    var $intro = $('#intro');
+
+    // Move to main on <=large, back to sidebar on >large.
+    breakpoints.on('<=large', function() {
+        $intro.prependTo($main);
+    });
+
+    breakpoints.on('>large', function() {
+        $intro.prependTo($sidebar);
+    });
 
 })(jQuery);
